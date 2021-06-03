@@ -2,9 +2,11 @@
   "name": "@xquare/xnew",
   "version": "1.0.0",
   "description": "XQUARE frontend workspace cli",
-  "main": "dist/index.js",
+  "bin": {
+    "xnew" : "dist/index.js"
+  },
+  "files": ["dist"],
   "scripts": {
-    "start" : "node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

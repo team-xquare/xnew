@@ -1,8 +1,11 @@
+#!/usr/bin/env node
 import commander from 'commander'
 import commands from './commands'
 
 commander
+    .command('xnew')
     .alias('xnew')
+    .version('1.0.3','-v,--version')
     .usage('')
     .arguments('[option]')
     .option('-L --library <name>','새로운 라이브러리 추가', commands.library)
