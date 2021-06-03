@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-xquare/frontend-cli.git"
+    "url": "git+https://github.com/team-xquare/xnew.git"
   },
   "keywords": [
     "xquare",
@@ -19,9 +19,9 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/team-xquare/frontend-cli/issues"
+    "url": "https://github.com/team-xquare/xnew/issues"
   },
-  "homepage": "https://github.com/team-xquare/frontend-cli#readme",
+  "homepage": "https://github.com/team-xquare/xnew#readme",
   "devDependencies": {
     "@types/node": "^15.9.0",
     "typescript": "^4.3.2"
