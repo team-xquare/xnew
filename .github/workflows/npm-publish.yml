@@ -12,9 +12,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-      - run: yarn install --frozen-lockfile
 
   publish-npm:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: yarn install --frozen-lockfile
-      - run: npx tsc
+      - run: npx tsc 
       - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
