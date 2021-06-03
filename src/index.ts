@@ -3,7 +3,7 @@ import commander from 'commander'
 import commands from './commands'
 
 commander
-    .command('xnew')
+    .command('xnew-frontend')
     .alias('xnew')
     .version('1.0.3','-v,--version')
     .usage('')
