@@ -1,5 +1,5 @@
 {
-  "name": "frontend-cli",
+  "name": "@xquare/xnew",
   "version": "1.0.0",
   "description": "XQUARE frontend workspace cli",
   "main": "dist/index.js",
