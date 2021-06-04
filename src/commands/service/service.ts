@@ -7,16 +7,16 @@ import { templates } from '../../constances/templates'
 
 
 function isAvailableDirectory() : boolean{
-    const directories = path.resolve().split("/")
-    if(directories[directories.length-1]==='xquare-frontend' 
-    || directories[directories.length-1]==='services') return true
+    const directories = path.basename(path.resolve())
+    if(directories==='xquare-frontend' 
+    || directories==='services') return true
     return false
 }
 function getSetUpDirectory(name : string) : string { 
-    const directories = path.resolve().split("/")
+    const directories = path.basename(path.resolve())
     const now = path.resolve();
-    if(directories[directories.length-1]==='xquare-frontend'){
-        return path.join(path.join(path.join(now, 'packages'),'services'),name)
+    if(directories==='xquare-frontend'){
+        return path.join(now, `packages/services/${name}`)
     }
     else{
         return path.join(now,name)
