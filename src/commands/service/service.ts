@@ -3,43 +3,58 @@ import os from 'os';
 import path from 'path';
 import cpy from 'cpy'
 import inquirer from 'inquirer'
+import { templates } from '../../constances/templates'
 
-async function createXFrontEnd(name : string){
-    const answers = await inquirer.prompt({
-        type: "list",
-        name: "frontend-template",
-        message: "사용할 템플릿을 선택하세요",
-        choices: [
-            {
-                name: "next + typescript",
-                value: "ts-next"
-            },
-            {
-                name: "react + typescript",
-                value: "ts-react"
-            },
-            {
-                name: "react",
-                value: "js-react"
-            }
-        ]
-    })
-    const root = path.resolve();
+
+function isAvailableDirectory() : boolean{
+    const directories = path.resolve().split("/")
+    if(directories[directories.length-1]==='xquare-frontend' 
+    || directories[directories.length-1]==='services') return true
+    return false
+}
+function getSetUpDirectory(name : string) : string { 
+    const directories = path.resolve().split("/")
+    const now = path.resolve();
+    if(directories[directories.length-1]==='xquare-frontend'){
+        return path.join(path.join(path.join(now, 'packages'),'services'),name)
+    }
+    else{
+        return path.join(now,name)
+    }
+}
+
+function createPackageJson(directory : string, name : string) {
     const packageJson = {
         name : `@service/${name}`,
         version : '1.0.0',
-
     }
-    fs.writeFileSync(
-        path.join(root, 'package.json'),
+    return fs.writeFileSync(
+        path.join(directory, 'package.json'),
         JSON.stringify(packageJson, null, 2) + os.EOL
     );
-    await cpy('**',root, {
-        parents: true,
-        cwd: path.join(__dirname, '../../../src/templates', answers['frontend-template'])
-    })
-    
 }
+
+async function getTemplates() {
+    const { template } = await inquirer.prompt(templates)
+    return template
+}
+
+async function createXFrontEnd(name : string){
+    const available = isAvailableDirectory();
+    if(available){
+        const directory = getSetUpDirectory(name)
+        const template = await getTemplates()
+        await cpy('**',directory, {
+            parents: true,
+            cwd: path.join(__dirname, '../../../src/templates', template)
+        })
+        createPackageJson(directory, name)
+        console.log('✅ 서비스 추가 완료!')
+    }else{
+        console.log('❌ root 혹은 service 디렉토리 내에서 사용해주세요')
+    }
+}
+
 
 
 function Service(name : string){
