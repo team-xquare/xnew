@@ -6,7 +6,8 @@
     "xnew": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
