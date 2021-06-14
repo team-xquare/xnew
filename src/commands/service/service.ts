@@ -24,12 +24,11 @@ function getSetUpDirectory(name : string) : string {
 }
 
 function createPackageJson(directory : string, name : string) {
-    const packageJson = {
-        name : `@service/${name}`,
-        version : '1.0.0',
-    }
+    const packageDirectory = path.join(directory,'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packageDirectory,'utf-8'));
+    packageJson.name = `@service/${name}`
     return fs.writeFileSync(
-        path.join(directory, 'package.json'),
+        packageDirectory,
         JSON.stringify(packageJson, null, 2) + os.EOL
     );
 }
