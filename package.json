@@ -1,6 +1,6 @@
 {
   "name": "@xquare/xnew",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "XQUARE frontend workspace cli",
   "bin": {
     "xnew": "dist/index.js"
