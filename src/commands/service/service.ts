@@ -3,6 +3,7 @@ import os from 'os';
 import path from 'path';
 import cpy from 'cpy'
 import inquirer from 'inquirer'
+import { exec } from 'child_process';
 import { templates } from '../../constances/templates'
 
 
@@ -48,7 +49,12 @@ async function createXFrontEnd(name : string){
             cwd: path.join(__dirname, '../../../src/templates', template)
         })
         createPackageJson(directory, name)
-        console.log('✅ 서비스 추가 완료!')
+        exec("yarn", (error, stdout, stderr)=>{
+            console.log(stdout);
+            console.log(stderr);
+            error!=null ? console.log(error) : console.log('✅ 서비스 추가 완료!')
+        })
+        
     }else{
         console.log('❌ root 혹은 service 디렉토리 내에서 사용해주세요')
     }
