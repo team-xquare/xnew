@@ -46,7 +46,18 @@ async function createXFrontEnd(name : string){
         const template = await getTemplates()
         await cpy('**',directory, {
             parents: true,
-            cwd: path.join(__dirname, '../../../src/templates', template)
+            cwd: path.join(__dirname, '../../../src/templates', template),
+            rename: (name)=> {
+                switch(name) {
+                    case 'gitignore':
+                    case 'eslintrc.json': {
+                        return '.'.concat(name)
+                    }
+                    default: {
+                        return name
+                    }
+                }
+            }
         })
         createPackageJson(directory, name)
         exec("yarn", (error, stdout, stderr)=>{

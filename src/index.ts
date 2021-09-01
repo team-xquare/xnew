@@ -5,7 +5,7 @@ import commands from './commands'
 commander
     .command('xnew-frontend')
     .alias('xnew')
-    .version('1.1.3','-v,--version')
+    .version('1.1.4','-v,--version')
     .usage('')
     .arguments('[option]')
     .option('-L --library <name>','새로운 라이브러리 추가', commands.library)
