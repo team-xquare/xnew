@@ -17,7 +17,7 @@ function getSetUpDirectory(name : string) : string {
     const directories = path.basename(path.resolve())
     const now = path.resolve();
     if(directories==='xquare-frontend'){
-        return path.join(now, `packages/services/${name}`)
+        return path.join(now, `services/${name}`)
     }
     else{
         return path.join(now,name)
